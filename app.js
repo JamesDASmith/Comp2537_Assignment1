@@ -164,7 +164,12 @@ app.post('/createUser', async (req, res) =>
 
     try {
         await usersCollection.insertOne({ username, email, password: hashedPassword });
-        res.redirect('/login');
+        req.session.authenticated = true;
+        req.session.email = email;
+        req.session.username = username;
+        req.session.cookie.maxAge = expireTime;
+
+        res.redirect('/');
       } catch (err) {
         console.error("Error saving user:", err);
         res.send("Error creating user.");
