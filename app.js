@@ -180,7 +180,6 @@ app.get('/login', (req, res) =>
 app.post('/loginUser', async (req, res) =>
 {
     var email = req.body.email;
-    var username = req.body.username;
     var password = req.body.password;
 
     const { error } = loginSchema.validate({ email, password});
