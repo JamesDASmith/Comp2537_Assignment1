@@ -183,7 +183,7 @@ app.post('/loginUser', async (req, res) =>
     var username = req.body.username;
     var password = req.body.password;
 
-    const { error } = loginSchema.validate({ email, password, username});
+    const { error } = loginSchema.validate({ email, password});
     if (error) {
         return res.status(400).send('Invalid login input');
       }
