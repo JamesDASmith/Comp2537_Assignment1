@@ -38,7 +38,7 @@ app.use(session({
     cookie: {
         maxAge: expireTime,
         sameSite: 'lax',
-        secure: process.env.NODE_ENV === 'production' // Only use secure cookies in production (HTTPS)
+        secure: true 
     }
 }));
 
