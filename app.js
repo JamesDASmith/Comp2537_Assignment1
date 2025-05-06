@@ -203,7 +203,7 @@ app.post('/loginUser', async (req, res) =>
 
     const { error } = loginSchema.validate({ email, password});
     if (error) {
-        return res.status(400).send('Invalid login input');
+        return res.status(400).send('Invalid Password');
       }
 
     const user = await usersCollection.findOne({ email });
