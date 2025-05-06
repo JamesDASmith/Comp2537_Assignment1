@@ -34,7 +34,12 @@ app.use(session({
     secret:             node_session_secret,
     store:              mongoStore,
     saveUninitialized:  false,
-    resave:             true
+    resave:             true,
+    cookie: {
+        maxAge: expireTime,
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production' // Only use secure cookies in production (HTTPS)
+    }
 }));
 
 const { MongoClient } = require('mongodb');
