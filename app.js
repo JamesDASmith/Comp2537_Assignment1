@@ -24,6 +24,15 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(express.static('public'));
 
+pp.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect('https://' + req.headers.host + req.url);
+    }
+    next();
+});
+
+app.set('trust proxy', 1);
+
 // Create a new MongoDB store instance
 var mongoStore = MongoStore.create({ 
     mongoUrl: `mongodb+srv://${mongodb_user}:${mongodb_password}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DATABASE}`,
