@@ -4,6 +4,7 @@ const MongoStore =  require('connect-mongo');
 const bcrypt =      require('bcrypt');
 
 require('dotenv').config();
+const Joi = require('joi');
 
 
 const app = express();                  // Create an instance of express
